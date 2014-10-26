@@ -2,7 +2,6 @@ from Cell import Cell
 
 class Snake:
 
-	# Snake constructor
 	# must pass a valid list of Cells with at least one cell (the head)
 	# must pass a valid direction ('up', 'down', 'left', 'right')
 	def __init__(self, cell_list, direction):
@@ -16,9 +15,9 @@ class Snake:
 
 
 	# moves snake in its current direction by moving head in 
-	# snake's current direction, and each body cell follows
+	# that direction by dist, and each body cell follows
 	# the one ahead of it. Returns nothing
-	def move_snake(self, cell_size):
+	def move_snake(self, dist):
 		
 		cells = self.cell_list
 		num_cells = len(cells)
@@ -31,6 +30,12 @@ class Snake:
 
 		# move head in current snake direction
 		dir = self.direction 	 
-		cells[0].move_cell(dir, cell_size) 
+		cells[0].move_cell(dir, dist) 
+
+	# adds a cell to end of snake body. Returns nothing
+	def add_cell(self, coord, cell_size):
+		new_cell = Cell(coord)
+		self.cell_list.append(new_cell)
+		
 
 

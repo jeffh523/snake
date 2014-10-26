@@ -1,6 +1,7 @@
 import unittest
 from Snake import Snake
 from Cell import Cell
+from Game import get_random_coord
 
 
 class Tests(unittest.TestCase):
@@ -23,7 +24,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(self.snakey.cell_list[2].coord[0], 50 + 2)
 		self.assertEqual(self.snakey.cell_list[2].coord[1], 50)
 		# move snake (left)
-		self.snakey.move_snake()
+		self.snakey.move_snake(1)
 		# check head is one cell left
 		self.assertEqual(self.snakey.cell_list[0].coord[0], (50 - 1))
 		self.assertEqual(self.snakey.cell_list[0].coord[1], 50)
@@ -43,7 +44,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(self.snakey.cell_list[2].coord[0], 50 + 2)
 		self.assertEqual(self.snakey.cell_list[2].coord[1], 50)
 		# move snake (up)
-		self.snakey.move_snake()
+		self.snakey.move_snake(1)
 		# check head is one cell up
 		self.assertEqual(self.snakey.cell_list[0].coord[0], 50)
 		self.assertEqual(self.snakey.cell_list[0].coord[1], 50 - 1)
@@ -54,7 +55,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(self.snakey.cell_list[2].coord[1], 50)
 
 		# move it up again
-		self.snakey.move_snake()
+		self.snakey.move_snake(1)
 		# check head is one cell up
 		self.assertEqual(self.snakey.cell_list[0].coord[0], 50)
 		self.assertEqual(self.snakey.cell_list[0].coord[1], 50 - 2)
@@ -65,7 +66,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(self.snakey.cell_list[2].coord[1], 50)
 
 		# move it up again
-		self.snakey.move_snake()
+		self.snakey.move_snake(1)
 		# check head is one cell up
 		self.assertEqual(self.snakey.cell_list[0].coord[0], 50)
 		self.assertEqual(self.snakey.cell_list[0].coord[1], 50 - 3)
@@ -86,7 +87,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(self.snakey.cell_list[2].coord[0], 50 + 2)
 		self.assertEqual(self.snakey.cell_list[2].coord[1], 50)
 		# move snake (down)
-		self.snakey.move_snake()
+		self.snakey.move_snake(1)
 		# check head is one cell down
 		self.assertEqual(self.snakey.cell_list[0].coord[0], 50)
 		self.assertEqual(self.snakey.cell_list[0].coord[1], 50 + 1)
@@ -112,7 +113,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(self.snakey.cell_list[2].coord[0], 50 - 2)
 		self.assertEqual(self.snakey.cell_list[2].coord[1], 50)
 		# move snake (right)
-		self.snakey.move_snake()
+		self.snakey.move_snake(1)
 		# check head is one cell right
 		self.assertEqual(self.snakey.cell_list[0].coord[0], 50 + 1)
 		self.assertEqual(self.snakey.cell_list[0].coord[1], 50)
@@ -130,23 +131,36 @@ class Tests(unittest.TestCase):
 		self.assertEqual(self.snakey.cell_list[0].coord[1], 50)
 		self.assertEqual(1, len(self.snakey.cell_list))
 		# move snake (left)
-		self.snakey.move_snake()
+		self.snakey.move_snake(1)
 		self.assertEqual(self.snakey.cell_list[0].coord[0], 50 - 1)
 		self.assertEqual(self.snakey.cell_list[0].coord[1], 50)
 		# move snake (up)
 		self.snakey.direction = 'up'
-		self.snakey.move_snake()
+		self.snakey.move_snake(1)
 		self.assertEqual(self.snakey.cell_list[0].coord[0], 50 - 1)
 		self.assertEqual(self.snakey.cell_list[0].coord[1], 50 - 1)
 		# move up again
-		self.snakey.move_snake()
+		self.snakey.move_snake(1)
 		self.assertEqual(self.snakey.cell_list[0].coord[0], 50 - 1)
 		self.assertEqual(self.snakey.cell_list[0].coord[1], 50 - 2)
 		# move snake right
 		self.snakey.direction = 'right'
-		self.snakey.move_snake()
+		self.snakey.move_snake(1)
 		self.assertEqual(self.snakey.cell_list[0].coord[0], 50)
 		self.assertEqual(self.snakey.cell_list[0].coord[1], 50 - 2)
+
+	def test_get_random_coord(self):
+		cell_size = 20
+		width = 500
+		height = 500
+		coords = []
+		for i in range(0, 20):
+			coord = get_random_coord(cell_size, width, height)
+			coords.append(coord)
+			self.assertTrue(coords[i][0] % cell_size == 0)
+			self.assertTrue(coords[i][1] % cell_size == 0)
+			print coord
+
 
 
 def main():

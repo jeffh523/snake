@@ -9,44 +9,44 @@ class Cell:
 	##########################################################
 
 	
-	# moves the cell up. returns nothing
-	def move_cell_up(self, cell_size):
+	# moves the cell up dist pixels. returns nothing
+	def move_cell_up(self, dist):
 		x = self.coord[0]
-		new_y = self.coord[1] - cell_size
+		new_y = self.coord[1] - dist
 		new_coord = (x, new_y)
 		self.coord = new_coord
 
-	# moves the cell down. returns nothing
-	def move_cell_down(self, cell_size):
+	# moves the cell down dist pixels. returns nothing
+	def move_cell_down(self, dist):
 		x = self.coord[0]
-		new_y = self.coord[1] + cell_size
+		new_y = self.coord[1] + dist
 		new_coord = (x, new_y)
 		self.coord = new_coord
 
-	# moves the cell left. returns nothing
-	def move_cell_left(self, cell_size):
+	# moves the cell left dist pixels. returns nothing
+	def move_cell_left(self, dist):
 		y = self.coord[1]
-		new_x = self.coord[0] - cell_size
+		new_x = self.coord[0] - dist
 		new_coord = (new_x, y)
 		self.coord = new_coord
 
-	# moves the cell right. returns nothing
-	def move_cell_right(self, cell_size):
+	# moves the cell right dist pixels. returns nothing
+	def move_cell_right(self, dist):
 		y = self.coord[1]
-		new_x = self.coord[0] + cell_size
+		new_x = self.coord[0] + dist
 		new_coord = (new_x, y)
 		self.coord = new_coord
 
-	# moves cell in given direction. returns nothing
-	def move_cell(self, dir, cell_size):
+	# moves cell dist pixels in given dir. returns nothing
+	def move_cell(self, dir, dist):
 		if dir == 'left':
-			self.move_cell_left(cell_size)
+			self.move_cell_left(dist)
 		elif dir == 'right':
-			self.move_cell_right(cell_size)
+			self.move_cell_right(dist)
 		elif dir == 'up':
-			self.move_cell_up(cell_size)
+			self.move_cell_up(dist)
 		else:
-			self.move_cell_down(cell_size)
+			self.move_cell_down(dist)
 
 
 
